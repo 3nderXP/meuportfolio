@@ -1,5 +1,5 @@
 const config = {
-    url_base: location.origin
+    urlBase: `${location.origin}/meuportfolio`
 }
 
 export default config
