@@ -10,4 +10,4 @@ Acesse [este link](https://3nderxp.github.io/meuportfolio/) e veja o meu portfó
 |------------------- | ---------------------------------------------------------------------- |
 |       `HTML5`      | Orgnanização estrutural e semântico, arquivos externos                 |
 |       `CSS3`       | Organização hierarquica e especificidade dos seletores, flexbox & grid |
-| `JavaScript (ES6)` | Divisão de arquivos, import/export, uso de views, etc...               |
+| `JavaScript (ES6)` | Divisão de arquivos, import/export, uso de views, utils etc...         |
