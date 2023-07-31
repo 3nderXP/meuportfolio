@@ -1,112 +1,120 @@
-import View from './view.js'
+import Config from './config.js'
 import Utils from './utils.js'
+import View from './view.js'
 
 const elementsTypingEffects = document.querySelectorAll('.typing-effect')
 const menusHamburgueres = document.querySelectorAll('.menu-hamburguer')
 const customersReviewsContainer = document.querySelector('.customers-reviews .reviews')
-const customersReviews = Utils.shuffle([
-    {
-        avatar: 'https://cdn.discordapp.com/avatars/687372534030663759/7aef0f501331a0ccbfa2a09e7bc8848c.png?size=2048',
-        name: 'Gabriel Eduardo',
-        service: 'Calculadora Tributaria',
-        stars: 5,
-        message: 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et',
-    },
-    {
-        avatar: 'https://cdn.discordapp.com/avatars/638886080363626507/6dd85646b0032fda9d72ea8c2bc9614e.png?size=2048',
-        name: 'Jhonzzera',
-        service: 'Carousel',
-        stars: 5,
-        message: 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et',
-    },
-    {
-        avatar: 'https://cdn.discordapp.com/avatars/319099107396288515/84ece945116676ee36949e70f3e1cde4.png?size=2048',
-        name: 'Samuel Barbera',
-        service: 'Site para bot',
-        stars: 5,
-        message: 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et',
-    },
-])
 
-if(customersReviewsContainer){
+let customersReviews
 
-    const viewLocale = 'components/reviews/review'
-    const customersReviewsView = await Promise.all(customersReviews.slice(0, 2).map(async (customerReview) => {
+window.addEventListener('load', async () => {
 
-        return Utils.toHTML(await View.render(`${viewLocale}`, {
-            stars: (await View.render(`${viewLocale}/stars/star`)).repeat(customerReview.stars),
-            starsCount: customerReview.stars,
-            message: customerReview.message,
-            avatar: customerReview.avatar,
-            name: customerReview.name,
-            service: customerReview.service,
+    if(customersReviewsContainer){
+
+        customersReviews = Utils.shuffle(await (await fetch(`${Config.urlBase}/assets/json/customers_reviews.json`)).json()).filter(customerReview => customerReview.status)
+
+        const viewLocale = 'components/reviews/review'
+        const customersReviewsView = await Promise.all(customersReviews.slice(0, 2).map(async (customerReview) => {
+    
+            return Utils.toHTML(await View.render(`${viewLocale}`, {
+                stars: (await View.render(`${viewLocale}/stars/star`)).repeat(customerReview.stars),
+                starsCount: customerReview.stars,
+                message: customerReview.message,
+                avatar: customerReview.avatar,
+                name: customerReview.name,
+                service: customerReview.service,
+            }))
+            
         }))
-        
-    }))
+    
+        customersReviewsContainer.innerHTML = null
+    
+        customersReviewsView.forEach((customerReview) => {
 
-    customersReviewsContainer.innerHTML = null
+            customersReviewsContainer.appendChild(customerReview)
+            
+            const message = customerReview.querySelector('.message')
+            const seeMore = message.querySelector('.see-more')
 
-    customersReviewsView.forEach((customerReview) => {
+            const styles = getComputedStyle(message)
+            const minHeight = styles.getPropertyValue('min-height').replace(/\D/g, '')
+            
+            if(message.clientHeight <= minHeight){
 
-        customersReviewsContainer.appendChild(customerReview)
-
-    })
-
-}
-
-if(menusHamburgueres.length > 0){
-
-    menusHamburgueres.forEach((menu) => {
-
-        const sidebar = document.querySelector(`#${menu.dataset.for}`)
-        const ResObserver = new ResizeObserver(() => {
-
-            if(document.body.clientWidth < 1095) {
-
-                sidebar.classList.remove('show')
+                seeMore.remove()
+                return
 
             }
 
-            const nav = sidebar.querySelector('nav')
-            const styles = getComputedStyle(nav)
-            const sidebarPadding = styles.getPropertyValue('--padding')
+            message.style.maxHeight = `${message.clientHeight}px`
+            message.style.height = `0%`
 
-            nav.style.paddingRight = nav.scrollHeight > nav.clientHeight ? sidebarPadding : 0
+            seeMore.addEventListener('click', () => {
 
+                message.classList.toggle('see-more')
+
+            })
+    
         })
-
-        ResObserver.observe(sidebar)
-
-        menu.addEventListener('click', () => {
-
-            sidebar.classList.toggle('show')
-
+    
+    }
+    
+    if(menusHamburgueres.length > 0){
+    
+        menusHamburgueres.forEach((menu) => {
+    
+            const sidebar = document.querySelector(`#${menu.dataset.for}`)
+            const ResObserver = new ResizeObserver(() => {
+    
+                if(document.body.clientWidth < 1095) {
+    
+                    sidebar.classList.remove('show')
+    
+                }
+    
+                const nav = sidebar.querySelector('nav')
+                const styles = getComputedStyle(nav)
+                const sidebarPadding = styles.getPropertyValue('--padding')
+    
+                nav.style.paddingRight = nav.scrollHeight > nav.clientHeight ? sidebarPadding : 0
+    
+            })
+    
+            ResObserver.observe(sidebar)
+    
+            menu.addEventListener('click', () => {
+    
+                sidebar.classList.toggle('show')
+    
+            })
+    
         })
-
-    })
-
-}
-
-if(elementsTypingEffects.length > 0){
-
-    const backupElementsValues = []
-
-    for(let [index, element] of elementsTypingEffects.entries()){
-        
-        backupElementsValues[index] = element.textContent
-        element.style.height = `${element.clientHeight}px`
-
-        element.innerHTML = null
-
+    
+    }
+    
+    if(elementsTypingEffects.length > 0){
+    
+        const backupElementsValues = []
+    
+        for(let [index, element] of elementsTypingEffects.entries()){
+            
+            backupElementsValues[index] = element.textContent
+            element.style.height = `${element.clientHeight}px`
+    
+            element.innerHTML = null
+    
+        }
+    
+        for(let [index, text] of backupElementsValues.entries()){
+    
+            await typingEffect(elementsTypingEffects[index], text)
+    
+        }
+    
     }
 
-    for(let [index, text] of backupElementsValues.entries()){
-
-        await typingEffect(elementsTypingEffects[index], text)
-
-    }
-
-}
+})
 
 async function typingEffect(element, text) {
 

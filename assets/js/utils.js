@@ -70,7 +70,7 @@ const toCamelCase = function (string, separator = ' ') {
  * Converte uma string para um elemento HTML ChildNode ou NodeList, dependendo da estrutura.
  * 
  * @param {string} string String contendo uma estrutura HTML
- * @return {ChildNode | NodeList} Retorna um ChildNode ou NodeList
+ * @return {ChildNode | NodeList | Element} Retorna um ChildNode ou NodeList
  * 
 */
 
@@ -208,6 +208,20 @@ const shuffle = (array) => {
 
 /**
  * 
+ * @param {Number} time Tempo em milisegundos
+ * 
+ * Faz com que o fluxo do escopo em que a função foi executada parar por um periodo e depois continuar
+ * 
+*/
+
+const sleep = async (time) => {
+
+    return new Promise((resolve) => setTimeout(() => resolve(), time))
+
+}
+
+/**
+ * 
  * Algumas funções uteis para o desenvolvimento
  * 
 */
@@ -218,5 +232,6 @@ export default {
     toCamelCase,
     toHTML,
     objIndexOf,
-    shuffle
+    shuffle,
+    sleep
 }

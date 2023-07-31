@@ -545,7 +545,8 @@ p{
     border: 1px solid transparent;
     border-image-source: linear-gradient(to right, transparent, var(--cor-destaque) 45px, transparent);
     border-image-slice: 1;
-    transition: .3s ease;
+    transition: .3s ease, height 1.5s ease;
+    overflow: hidden;
 }
 
 #content .customers-reviews .reviews .review:hover .message {
@@ -607,15 +608,58 @@ p{
     fill: var(--cor-destaque);
 }
 
-#content .customers-reviews .reviews .review .message .text{
+#content .customers-reviews .reviews .review .message .text {
     --placeholder-width: 200px;
+    --mask-image: linear-gradient(to top, transparent, black);
     font-family: Roboto, Arial, Helvetica, sans-serif;
     line-height: 28pt;
     font-size: 18pt;
     font-weight: 300;
+    overflow: hidden;
 }
 
-#content .customers-reviews .reviews .review .customer{
+#content .customers-reviews .reviews .review .message:has(button.see-more) .text:not(:empty) {
+    -webkit-mask-image: var(--mask-image);
+    -moz-mask-image: var(--mask-image);
+    mask-image: var(--mask-image);
+}
+
+#content .customers-reviews .reviews .review .message button.see-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 20px;
+    border: none;
+    background-color: var(--cor-destaque);
+    border-radius: var(--radius-cylinder);
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+#content .customers-reviews .reviews .review .message button.see-more .icon {
+    width: 20px;
+    height: 20px;
+    fill: #ffffff;
+    transition: .3s ease;
+}
+
+#content .customers-reviews .reviews .review .message.see-more {
+    height: 100%!important;
+}
+
+#content .customers-reviews .reviews .review .message.see-more .text {
+    --mask-image: none;
+}
+
+#content .customers-reviews .reviews .review .message.see-more button.see-more .icon {
+    transform: rotate(180deg);
+}
+
+#content .customers-reviews .reviews .review .customer {
     display: flex;
     gap: 20px;
     align-items: center;

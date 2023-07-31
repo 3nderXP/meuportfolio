@@ -1,0 +1,26 @@
+[
+    {
+        "avatar": "https://cdn.discordapp.com/avatars/687372534030663759/7aef0f501331a0ccbfa2a09e7bc8848c.png?size=2048",
+        "name": "Gabriel Eduardo",
+        "service": "Calculadora Tributaria",
+        "stars": 5,
+        "message": "Estou muito satisfeito com o sistema de calculadora tributária desenvolvido por Ádrian e sua equipe <i><strong>AxSpear</strong></i>. Funciona perfeitamente e foram super atenciosos durante todo o processo. Parabéns pelo excelente trabalho!",
+        "status": true
+    },
+    {
+        "avatar": "https://cdn.discordapp.com/avatars/638886080363626507/6dd85646b0032fda9d72ea8c2bc9614e.png?size=2048",
+        "name": "Jhonzzera",
+        "service": "Features para portfólio",
+        "stars": 5,
+        "message": "Ao contratar os serviços do <i><strong>Ádrian</strong></i> e sua equipe <i><strong>AxSpear</strong></i>, contei tudo o que precisava ser personalizado na minha página do <i><strong>WordPress</strong></i> e rapidamente fui respondido, marcamos uma reunião onde foi entendido tudo o que seria feito e o trabalho foi concluído em 3 dias, muito mais rápido do que eu imaginava, parabéns a equipe! Super recomendo.",
+        "status": true
+    },
+    {
+        "avatar": "https://cdn.discordapp.com/avatars/319099107396288515/84ece945116676ee36949e70f3e1cde4.png?size=2048",
+        "name": "Samuel Barbera",
+        "service": "Site para bot Discord",
+        "stars": 5,
+        "message": "O site do bot ficou foda, tá funcionando tudo certinho! 🤙",
+        "status": true
+    }
+]
