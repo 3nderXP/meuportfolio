@@ -184,7 +184,7 @@ p{
     background-color: var(--cor-fundo-2);
     height: 768px;
     position: relative;
-    border: 1px solid transparent;
+    border-bottom: 1px solid transparent;
     border-image-source: linear-gradient(to right, transparent, var(--cor-destaque), transparent);
     border-image-slice: 1;
 }
