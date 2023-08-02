@@ -413,9 +413,16 @@ p{
 }
 
 #content .companies .wrapper .companie{
-    filter: saturate(0) brightness(30%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     cursor: pointer;
     transition: .3s ease;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18pt;
+    filter: saturate(0) brightness(30%);
 }
 
 #content .companies .wrapper .companie:hover{
@@ -423,7 +430,9 @@ p{
 }
 
 #content .companies .wrapper .companie img{
-    width: 140px;
+    max-width: 140px;
+    height: 60px;
+    object-fit: contain;
 }
 
 #content .projects{
