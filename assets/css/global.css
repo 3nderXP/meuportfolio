@@ -543,17 +543,16 @@ p{
     position: relative;
     min-height: 240px;
     border: 1px solid transparent;
-    border-image-source: linear-gradient(to right, transparent, var(--cor-destaque) 45px, transparent);
+    border-image-source: linear-gradient(to right, transparent 10px, var(--cor-destaque) 45px, transparent calc(100% - 10px));
     border-image-slice: 1;
     transition: .3s ease, height 1.5s ease;
-    overflow: hidden;
 }
 
 #content .customers-reviews .reviews .review:hover .message {
     box-shadow: 0 30px 120px var(--cor-destaque-transparente);
 }
 
-#content .customers-reviews .reviews .review .message::before{
+#content .customers-reviews .reviews .review .message::before {
     --size: 40px;
     --clip-path: polygon(0 100%, 100% 0, 100% 100%);
     content: '';
