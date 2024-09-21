@@ -478,7 +478,8 @@ p{
 
 #content .projects .wrapper .project .infos .title {
     font-size: 18pt;
-    font-weight: 300;
+    font-weight: bold;
+    transition: .3s ease;
 }
 
 #content .projects .wrapper .project .infos .techs {
