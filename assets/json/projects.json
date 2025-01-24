@@ -1,0 +1,24 @@
+[
+    {
+        "name": "Project name",
+        "description": "Lorem ipsum dolor sit amet",
+        "image": "",
+        "stacks": [
+            "HTML",
+            "CSS",
+            "JS",
+            "PHP"
+        ]
+    },
+    {
+        "name": "Project name",
+        "description": "Lorem ipsum dolor sit amet",
+        "image": "",
+        "stacks": [
+            "HTML",
+            "CSS",
+            "JS",
+            "PHP"
+        ]
+    }
+]
