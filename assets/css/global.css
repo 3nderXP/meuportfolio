@@ -73,6 +73,7 @@ a{
 
 a:hover{
     color: var(--cor-destaque);
+    text-shadow: 0 10px 30px var(--cor-destaque);
 }
 
 p{
@@ -137,6 +138,7 @@ p{
 
 #navbar .menus .menu.active a{
     color: var(--cor-destaque);
+    box-shadow: 0 30px 60px var(--cor-destaque-transparente);
 }
 
 #navbar .menus .menu a .icon{
@@ -184,7 +186,7 @@ p{
     background-color: var(--cor-fundo-2);
     height: 768px;
     position: relative;
-    border-bottom: 1px solid transparent;
+    border: 2px solid transparent;
     border-image-source: linear-gradient(to right, transparent, var(--cor-destaque), transparent);
     border-image-slice: 1;
 }
@@ -193,7 +195,7 @@ p{
     content: '';
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 200%, var(--cor-destaque) 100px, transparent, transparent);
+    background: radial-gradient(circle at 50% -100%, var(--cor-destaque) 100px, transparent, transparent), radial-gradient(circle at 50% 200%, var(--cor-destaque) 100px, transparent, transparent);
     position: absolute;
     bottom: 0;
     right: 0;
@@ -209,7 +211,7 @@ p{
     height: 100%;
     margin: 0 auto;
     gap: 40px;
-    background-image: url('./../img/me 2.png');
+    background-image: url('./../img/me 3.png');
     background-repeat: no-repeat;
     background-position: 100% bottom;
     background-size: 720px;
@@ -227,12 +229,15 @@ p{
 }
 
 #header .content .stacks-areas .stack{
-    background-color: var(--cor-destaque);
+    background-color: var(--cor-destaque-transparente);
     padding: 5px 10px;
-    border-radius: 5px;
+    border: 3px solid var(--cor-destaque);
+    border-radius: 10px;
     cursor: pointer;
     transition: .3s ease;
     user-select: none;
+    box-shadow: 0 15px 30px var(--cor-destaque-transparente);
+    font-weight: bold;
 }
 
 #header .content .stacks-areas .stack:hover{
@@ -265,10 +270,37 @@ p{
 }
 
 #header .content .button {
-    max-width: 200px;
-    font-size: 18pt;
-    margin-right: auto;
-    margin-top: 40px;
+    display: flex;
+    gap: 10px;
+    max-width: max-content;
+    font-size: 14pt;
+    padding: 10px 40px;
+    height: 65px;
+    color: #ffffff;
+    white-space: nowrap;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 4px solid var(--cor-destaque);
+    color: var(--cor-destaque);
+}
+
+#header .content .button.highlight {
+    background: var(--cor-destaque-transparente);
+    color: #ffffff;
+}
+
+#header .content .button.highlight:hover {
+    background: var(--cor-destaque-2);
+}
+
+#header .content .button:hover {
+    filter: drop-shadow(0 15px 30px var(--cor-destaque-transparente));
+}
+
+#header .content .button:empty {
+    opacity: 0;
+    pointer-events: none;
 }
 
 #content{
@@ -709,6 +741,9 @@ p{
     gap: 40px;
     padding: 100px 0;
     background-color: var(--cor-fundo-2);
+    border: 2px solid transparent;
+    border-image-source: linear-gradient(to right, transparent, var(--cor-destaque), transparent);
+    border-image-slice: 1;
 }
 
 #footer .columns{

@@ -108,7 +108,7 @@ window.addEventListener('load', async () => {
     
         for(let [index, text] of backupElementsValues.entries()){
     
-            await typingEffect(elementsTypingEffects[index], text)
+            await typingEffect(elementsTypingEffects[index], text, 25)
     
         }
     
@@ -116,11 +116,10 @@ window.addEventListener('load', async () => {
 
 })
 
-async function typingEffect(element, text) {
+async function typingEffect(element, text, time = 50) {
 
     let currentTextLetter = 0,
-        interval = null,
-        time = 50
+        interval = null
 
     return new Promise((resolve) => {
 
