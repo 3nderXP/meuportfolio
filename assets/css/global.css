@@ -991,6 +991,7 @@ p{
 
     #sidebar nav, #sidebar .menus {
         display: flex;
+        flex-wrap: wrap;
         flex-direction: column;
         list-style: none;
         gap: 20px;

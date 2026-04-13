@@ -14,79 +14,93 @@ window.addEventListener('load', async () => {
 
     if(projectsContainer){
 
-        const skeletonCount = 4
-        const skeletonView = await View.render('components/projects/project/skeleton')
-        projectsContainer.innerHTML = skeletonView.repeat(skeletonCount)
+        try {
+            const skeletonCount = 4
+            const skeletonView = await View.render('components/projects/project/skeleton')
+            projectsContainer.innerHTML = skeletonView.repeat(skeletonCount)
 
-        const projects = Utils.shuffle(await (await fetch(`${Config.urlBase}/assets/json/projects.json`)).json())
+            const projects = Utils.shuffle(await (await fetch(`${Config.urlBase}/assets/json/projects.json`)).json())
 
-        const projectsView = await Promise.all(projects.map(async (project) => {
+            const projectsView = await Promise.all(projects.map(async (project) => {
 
-            const techsView = await Promise.all(project.stacks.map(async (tech) => {
-                return await View.render('components/projects/project/tech', { tech })
+                const techsView = await Promise.all(project.stacks.map(async (tech) => {
+                    return await View.render('components/projects/project/tech', { tech })
+                }))
+
+                return Utils.toHTML(await View.render('components/projects/project', {
+                    link: project.link || '#',
+                    name: project.name,
+                    image: project.image,
+                    techs: techsView.join('')
+                }))
             }))
 
-            return Utils.toHTML(await View.render('components/projects/project', {
-                link: project.link || '#',
-                name: project.name,
-                image: project.image,
-                techs: techsView.join('')
-            }))
-        }))
+            projectsContainer.classList.add('loaded')
+            projectsContainer.innerHTML = null
+            projectsView.forEach(projectView => projectsContainer.appendChild(projectView))
 
-        projectsContainer.classList.add('loaded')
-        projectsContainer.innerHTML = null
-        projectsView.forEach(projectView => projectsContainer.appendChild(projectView))
+        } catch (error) {
+            console.error('Error loading projects:', error)
+            projectsContainer.classList.add('loaded')
+            projectsContainer.innerHTML = '<p class="error">Failed to load projects. Please try again later.</p>'
+        }
 
     }
 
     if(customersReviewsContainer){
 
-        customersReviews = Utils.shuffle(await (await fetch(`${Config.urlBase}/assets/json/customers_reviews.json`)).json()).filter(customerReview => customerReview.status)
+        try {
+            
+            customersReviews = Utils.shuffle(await (await fetch(`${Config.urlBase}/assets/json/customers_reviews.json`)).json()).filter(customerReview => customerReview.status)
 
-        const viewLocale = 'components/reviews/review'
-        const customersReviewsView = await Promise.all(customersReviews.slice(0, 2).map(async (customerReview) => {
-    
-            return Utils.toHTML(await View.render(`${viewLocale}`, {
-                stars: (await View.render(`${viewLocale}/stars/star`)).repeat(customerReview.stars),
-                starsCount: customerReview.stars,
-                message: customerReview.message,
-                avatar: customerReview.avatar,
-                name: customerReview.name,
-                service: customerReview.service,
+            const viewLocale = 'components/reviews/review'
+            const customersReviewsView = await Promise.all(customersReviews.slice(0, 2).map(async (customerReview) => {
+        
+                return Utils.toHTML(await View.render(`${viewLocale}`, {
+                    stars: (await View.render(`${viewLocale}/stars/star`)).repeat(customerReview.stars),
+                    starsCount: customerReview.stars,
+                    message: customerReview.message,
+                    avatar: customerReview.avatar,
+                    name: customerReview.name,
+                    service: customerReview.service,
+                }))
+                
             }))
-            
-        }))
-    
-        customersReviewsContainer.innerHTML = null
-    
-        customersReviewsView.forEach((customerReview) => {
+        
+            customersReviewsContainer.innerHTML = null
+        
+            customersReviewsView.forEach((customerReview) => {
 
-            customersReviewsContainer.appendChild(customerReview)
-            
-            const message = customerReview.querySelector('.message')
-            const seeMore = message.querySelector('.see-more')
+                customersReviewsContainer.appendChild(customerReview)
+                
+                const message = customerReview.querySelector('.message')
+                const seeMore = message.querySelector('.see-more')
 
-            const styles = getComputedStyle(message)
-            const minHeight = styles.getPropertyValue('min-height').replace(/\D/g, '')
-            
-            if(message.clientHeight <= minHeight){
+                const styles = getComputedStyle(message)
+                const minHeight = styles.getPropertyValue('min-height').replace(/\D/g, '')
+                
+                if(message.clientHeight <= minHeight){
 
-                seeMore.remove()
-                return
+                    seeMore.remove()
+                    return
 
-            }
+                }
 
-            message.style.maxHeight = `${message.clientHeight}px`
-            message.style.height = `0%`
+                message.style.maxHeight = `${message.clientHeight}px`
+                message.style.height = `0%`
 
-            seeMore.addEventListener('click', () => {
+                seeMore.addEventListener('click', () => {
 
-                message.classList.toggle('see-more')
+                    message.classList.toggle('see-more')
 
+                })
+        
             })
-    
-        })
+
+        } catch (error) {
+            console.error('Error loading customers reviews:', error)
+            customersReviewsContainer.innerHTML = '<p class="error">Failed to load customers reviews. Please try again later.</p>'
+        }
     
     }
     
@@ -115,6 +129,7 @@ window.addEventListener('load', async () => {
     
             menu.addEventListener('click', () => {
     
+                console.log('click')
                 sidebar.classList.toggle('show')
     
             })
