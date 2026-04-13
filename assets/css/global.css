@@ -599,7 +599,7 @@ p{
     min-width: var(--placeholder-width);
     height: 15px;
     border-radius: var(--radius-cylinder);
-    backdrop-filter: brightness(80%);
+    backdrop-filter: brightness(150%);
     display: inline-block;
 }
 
