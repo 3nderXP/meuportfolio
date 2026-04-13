@@ -28,14 +28,15 @@
 
 :root{
     --cor-texto: #ffffff;
-    --cor-fundo: #25262a;
-    --cor-destaque: #0088ff;
-
     --cor-texto-2: #9a9a9a;
-    --cor-fundo-2: #2d2f33;
-    --cor-destaque-2: #2e9dff;
+    
+    --cor-fundo: #09060c;
+    --cor-fundo-2: #0e0a14;
+    
+    --cor-destaque: #9327ff;
+    --cor-destaque-2: #ab56ff;
 
-    --cor-destaque-transparente: #0088ff30;
+    --cor-destaque-transparente: #9327ff30;
 
     --max-width-containers: 1280px;
     --global-padding: 40px;
@@ -49,7 +50,8 @@ body{
 }
 
 ::-webkit-scrollbar {
-    background-color: var(--cor-fundo);;
+    background-color: var(--cor-fundo);
+    width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -186,7 +188,7 @@ p{
     background-color: var(--cor-fundo-2);
     height: 768px;
     position: relative;
-    border: 2px solid transparent;
+    border-bottom: 2px solid transparent;
     border-image-source: linear-gradient(to right, transparent, var(--cor-destaque), transparent);
     border-image-slice: 1;
 }
@@ -195,7 +197,7 @@ p{
     content: '';
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% -100%, var(--cor-destaque) 100px, transparent, transparent), radial-gradient(circle at 50% 200%, var(--cor-destaque) 100px, transparent, transparent);
+    background: radial-gradient(circle at 50% 200%, var(--cor-destaque) 100px, transparent, transparent);
     position: absolute;
     bottom: 0;
     right: 0;
@@ -231,7 +233,7 @@ p{
 #header .content .stacks-areas .stack{
     background-color: var(--cor-destaque-transparente);
     padding: 5px 10px;
-    border: 3px solid var(--cor-destaque);
+    border: 1px solid var(--cor-destaque);
     border-radius: 10px;
     cursor: pointer;
     transition: .3s ease;
@@ -271,6 +273,8 @@ p{
 
 #header .content .button {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
     max-width: max-content;
     font-size: 14pt;
@@ -281,7 +285,7 @@ p{
     border-radius: 15px;
     text-decoration: none;
     font-weight: bold;
-    border: 4px solid var(--cor-destaque);
+    border: 2px solid var(--cor-destaque);
     color: var(--cor-destaque);
 }
 
