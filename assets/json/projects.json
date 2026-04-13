@@ -1,24 +1,44 @@
 [
     {
-        "name": "Project name",
+        "name": "Infinity Multi Market",
         "description": "Lorem ipsum dolor sit amet",
-        "image": "",
-        "stacks": [
-            "HTML",
-            "CSS",
-            "JS",
-            "PHP"
-        ]
+        "image": "./assets/img/projects/infinity_multi_market_project.png",
+        "link": "https://www.infinitymultimarket.com.br/",
+        "stacks": ["html", "css", "js", "php", "mysql"]
     },
     {
-        "name": "Project name",
+        "name": "Era Animes Online",
         "description": "Lorem ipsum dolor sit amet",
-        "image": "",
-        "stacks": [
-            "HTML",
-            "CSS",
-            "JS",
-            "PHP"
-        ]
+        "image": "./assets/img/projects/era_animes_online_project.png",
+        "link": "https://www.eraanimes.online",
+        "stacks": ["html", "css", "js", "php", "mysql"]
+    },
+    {
+        "name": "Curso Hierath",
+        "description": "Lorem ipsum dolor sit amet",
+        "image": "./assets/img/projects/hierath_project.png",
+        "link": "https://cursohierath.netlify.app/",
+        "stacks": ["html", "css", "js"]
+    },
+    {
+        "name": "Nails Design",
+        "description": "Lorem ipsum dolor sit amet",
+        "image": "./assets/img/projects/nails_design_project.png",
+        "link": "https://3nderxp.github.io/nails_design/",
+        "stacks": ["html", "css", "js"]
+    },
+    {
+        "name": "Gravity",
+        "description": "Lorem ipsum dolor sit amet",
+        "image": "./assets/img/projects/gravity_project.png",
+        "link": "#",
+        "stacks": ["html", "css"]
+    },
+    {
+        "name": "San Hosting",
+        "description": "Lorem ipsum dolor sit amet",
+        "image": "./assets/img/projects/san_hosting_project.png",
+        "link": "https://sanhosting.com.br/",
+        "stacks": ["html", "css", "js", "php", "mysql"]
     }
 ]

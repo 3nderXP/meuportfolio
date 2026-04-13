@@ -483,6 +483,30 @@ p{
     width: 100%;
 }
 
+@keyframes skeleton-loading {
+    0% { background-color: #1a1520; }
+    50% { background-color: #2b2533; }
+    100% { background-color: #1a1520; }
+}
+
+.project.skeleton .title,
+.project.skeleton .tech,
+.project.skeleton .image {
+    animation: skeleton-loading 1.5s infinite ease-in-out;
+}
+
+.project.skeleton .title { height: 25px; width: 60%; border-radius: 5px; }
+.project.skeleton .tech { height: 20px; width: 50px; border-radius: 4px; }
+.project.skeleton .image { 
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: calc(100% - var(--padding));
+    height: 85%;
+    transform: rotate(10deg) translate3d(10%, 15%, 0);
+    border-radius: 20px;
+}
+
 #content .projects .wrapper .project {
     --padding: 40px;
     padding-top: calc((1 / 1) * 100%);

@@ -8,7 +8,37 @@ const customersReviewsContainer = document.querySelector('.customers-reviews .re
 
 let customersReviews
 
+const projectsContainer = document.querySelector('.projects .wrapper')
+
 window.addEventListener('load', async () => {
+
+    if(projectsContainer){
+
+        const skeletonCount = 4
+        const skeletonView = await View.render('components/projects/project/skeleton')
+        projectsContainer.innerHTML = skeletonView.repeat(skeletonCount)
+
+        const projects = Utils.shuffle(await (await fetch(`${Config.urlBase}/assets/json/projects.json`)).json())
+
+        const projectsView = await Promise.all(projects.map(async (project) => {
+
+            const techsView = await Promise.all(project.stacks.map(async (tech) => {
+                return await View.render('components/projects/project/tech', { tech })
+            }))
+
+            return Utils.toHTML(await View.render('components/projects/project', {
+                link: project.link || '#',
+                name: project.name,
+                image: project.image,
+                techs: techsView.join('')
+            }))
+        }))
+
+        projectsContainer.classList.add('loaded')
+        projectsContainer.innerHTML = null
+        projectsView.forEach(projectView => projectsContainer.appendChild(projectView))
+
+    }
 
     if(customersReviewsContainer){
 
