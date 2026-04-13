@@ -1065,6 +1065,10 @@ p{
 
 @media (max-width: 853px) {
 
+    body {
+        user-select: none;
+    }
+
     :root {
         --global-padding: 20px;
     }
