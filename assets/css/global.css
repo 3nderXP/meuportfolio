@@ -428,8 +428,48 @@ p{
     fill: var(--cor-destaque);
 }
 
-#content .skills .left-content .wrapper .skill .projects{
-    font-size: 10pt;
+.techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  font-size: 8pt;
+  font-weight: 500;
+  color: var(--cor-texto-2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.tech-item i {
+  font-size: 14px;
+  color: var(--tech-color, #fff);
+  transition: transform 0.3s ease;
+}
+
+.tech-item span {
+  white-space: nowrap;
+}
+
+.tech-item:hover {
+  background: var(--tech-color-bg);
+  border-color: var(--tech-color);
+  color: #fff;
+  box-shadow: 0 4px 12px var(--tech-color-shadow);
+  transform: translateY(-2px);
+}
+
+.tech-item:hover i {
+  transform: scale(1.1);
 }
 
 #content .skills .right-content .sticky-content{
@@ -790,7 +830,6 @@ p{
     display: flex;
     flex-direction: column;
     gap: 40px;
-    overflow: hidden;
 }
 
 #footer .columns .column:first-child{
@@ -857,20 +896,16 @@ p{
     fill: currentColor;
 }
 
-#footer .columns .column .menus .menu a:before{
+#footer .columns .column .menus .menu a::before{
     content: '<';
     opacity: 0;
     transition: opacity .3s ease;
 }
 
-#footer .columns .column .menus .menu a:after{
+#footer .columns .column .menus .menu a::after{
     content: '>';
     opacity: 0;
     transition: opacity .3s ease;
-}
-
-#footer .columns .column .menus .menu.active a:before, #navbar .menus .menu.active a:after{
-    opacity: 1;
 }
 
 #footer .columns .column .menus .menu a:hover::before{
@@ -1025,19 +1060,19 @@ p{
         fill: currentColor;
     }
     
-    #sidebar .menus:not(.social-medias) .menu a:before{
+    #sidebar .menus:not(.social-medias) .menu a::before{
         content: '<';
         opacity: 0;
         transition: opacity .3s ease;
     }
     
-    #sidebar .menus:not(.social-medias) .menu a:after{
+    #sidebar .menus:not(.social-medias) .menu a::after{
         content: '>';
         opacity: 0;
         transition: opacity .3s ease;
     }
     
-    #sidebar .menus:not(.social-medias) .menu.active a:before, #sidebar .menus .menu.active a:after{
+    #sidebar .menus:not(.social-medias) .menu.active a::before, #sidebar .menus .menu.active a::after{
         opacity: 1;
     }
     
