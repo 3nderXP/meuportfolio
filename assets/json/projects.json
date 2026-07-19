@@ -1,5 +1,12 @@
 [
     {
+        "name": "Elo CLI",
+        "description": "CLI modular em Bash para gerenciar instâncias do Minecraft",
+        "image": "./assets/img/projects/elo-cli.png",
+        "link": "https://github.com/3nderXP/elo",
+        "stacks": ["bash"]
+    },
+    {
         "name": "Infinity Multi Market",
         "description": "Lorem ipsum dolor sit amet",
         "image": "./assets/img/projects/infinity_multi_market_project.png",
