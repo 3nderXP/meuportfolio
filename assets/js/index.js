@@ -19,7 +19,7 @@ window.addEventListener('load', async () => {
             const skeletonView = await View.render('components/projects/project/skeleton')
             projectsContainer.innerHTML = skeletonView.repeat(skeletonCount)
 
-            const projects = Utils.shuffle(await (await fetch(`${Config.urlBase}/assets/json/projects.json`)).json())
+            const projects = await (await fetch(`${Config.urlBase}/assets/json/projects.json`)).json()
 
             const projectsView = await Promise.all(projects.map(async (project) => {
 
